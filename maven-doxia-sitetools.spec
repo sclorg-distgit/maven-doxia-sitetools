@@ -37,7 +37,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.4
-Release:        3.11%{?dist}
+Release:        3.12%{?dist}
 Summary:        Doxia content generation framework
 License:        ASL 2.0
 URL:            http://maven.apache.org/doxia/
@@ -48,20 +48,20 @@ Patch1:         0001-Remove-dependency-on-velocity-tools.patch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
 BuildRequires:  %{?scl_prefix_java_common}mvn(commons-collections:commons-collections)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-core)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-logging-api)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-module-apt)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-module-fml)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-module-fo)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-module-xdoc)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-module-xhtml)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-sink-api)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-parent:pom:)
-BuildRequires:  maven30-mvn(org.apache.velocity:velocity)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-container-default)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-i18n)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-utils)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-velocity)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-core)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-logging-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-module-apt)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-module-fml)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-module-fo)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-module-xdoc)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-module-xhtml)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-sink-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-parent:pom:)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.velocity:velocity)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-container-default)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-i18n)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-utils)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-velocity)
 BuildRequires:  %{?scl_prefix_java_common}mvn(xalan:xalan)
 BuildRequires:  %{?scl_prefix_java_common}mvn(xml-apis:xml-apis)
 
@@ -82,7 +82,7 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n doxia-%{subproj}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # upstream added support for velocity toolmanager, but it also means new
@@ -111,14 +111,14 @@ rm -rf $(find -type d -name itext)
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # tests can't run because of missing deps
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -131,6 +131,9 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-3.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.4-3.11
 - maven33 rebuild
 
