@@ -37,7 +37,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.4
-Release:        3.12%{?dist}
+Release:        3.13%{?dist}
 Summary:        Doxia content generation framework
 License:        ASL 2.0
 URL:            http://maven.apache.org/doxia/
@@ -46,7 +46,7 @@ Source0:        http://repo2.maven.org/maven2/org/apache/maven/doxia/doxia-sitet
 
 Patch1:         0001-Remove-dependency-on-velocity-tools.patch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix_java_common}mvn(commons-collections:commons-collections)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-core)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-logging-api)
@@ -131,6 +131,9 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.4-3.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-3.12
 - maven33 rebuild #2
 
