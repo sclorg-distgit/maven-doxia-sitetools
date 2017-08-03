@@ -9,7 +9,7 @@
 
 Name:           %{?scl_prefix}%{parent}-%{subproj}
 Version:        1.7.4
-Release:        3.1%{?dist}
+Release:        3.2%{?dist}
 Summary:        Doxia content generation framework
 License:        ASL 2.0
 URL:            http://maven.apache.org/doxia/
@@ -122,6 +122,9 @@ rm -r doxia-doc-renderer/src/main/java/org/apache/maven/doxia/docrenderer/pdf/fo
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Thu Jun 22 2017 Michael Simacek <msimacek@redhat.com> - 1.7.4-3.2
+- Mass rebuild 2017-06-22
+
 * Wed Jun 21 2017 Java Maintainers <java-maint@redhat.com> - 1.7.4-3.1
 - Automated package import and SCL-ization
 
